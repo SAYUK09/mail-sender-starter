@@ -23,7 +23,10 @@ export default async function handler(
         email: "sayurikamble123@gmail.com",
         name: "Sayuri",
       },
-      text: "Still Testing...",
+      templateId: "d-d00203c818ec4ee9a1598086f5213c10",
+      dynamic_template_data: {
+        user: "Coder",
+      },
     };
     const data = await sgMail.send(msg);
     if (data[0].statusCode === 202) {
