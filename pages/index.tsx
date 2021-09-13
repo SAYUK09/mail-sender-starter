@@ -4,8 +4,16 @@ import Head from "next/head";
 import Image from "next/image";
 import axios from "axios";
 
+export type ApiStatusType =
+  | "inactive"
+  | "initialized"
+  | "proccessing"
+  | "done"
+  | "error";
+
 const Home: NextPage = () => {
-  const [mail, setMail] = useState("");
+  const [mail, setMail] = useState<string>("");
+  const [apiStatus, setApiStatus] = useState<ApiStatusType>("inactive");
 
   function inputHandler(e: React.ChangeEvent<HTMLInputElement>) {
     setMail(e.target.value);
@@ -13,9 +21,14 @@ const Home: NextPage = () => {
 
   async function testApi(): Promise<void> {
     try {
+      setApiStatus("proccessing");
       const ress = await axios.post(`api/sendmails`, { emailAddress: mail });
       console.log(ress, "ressss");
-    } catch {}
+      setApiStatus("done");
+    } catch (err) {
+      console.log(err);
+      setApiStatus("error");
+    }
   }
 
   return (
@@ -30,6 +43,7 @@ const Home: NextPage = () => {
         <h1>Mail Sender Starter Pack</h1>
         <input type="email" onChange={inputHandler} />
         <button onClick={testApi}>Send Mail</button>
+        <h3>{apiStatus === "proccessing" ? "Sending..." : null}</h3>
       </main>
     </div>
   );
