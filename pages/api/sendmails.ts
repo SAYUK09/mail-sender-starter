@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import sgMail from "@sendgrid/mail";
 
-sgMail.setApiKey(process.env.SendGrid_API || "");
+sgMail.setApiKey(process.env.Sendgrid_API || "");
 
 type Data = {
   msg: any;
@@ -15,7 +15,6 @@ export default async function handler(
   res: NextApiResponse<Data | Error>
 ) {
   if (req.method === "POST") {
-    console.log(req.body.emailAddress);
     const msg: any = {
       to: req.body.emailAddress,
       subject: "Testing.....",
