@@ -27,3 +27,25 @@ git clone https://github.com/SAYUK09/mail-sender-starter
 cd mail-sender
 yarn
 ```
+
+## Feature
+
+- ES6 syntax
+- Features you will build
+
+## API Reference
+
+Routes located at `/pages/api`
+
+API Request for send mails:
+
+```
+api/sendmails
+```
+
+| parameter      | type   | description  |
+| -------------- | ------ | ------------ |
+| `emailAddress` | string | **required** |
+
+<hr>
+Ping me if you have any other Scenarios. Feel free to make any changes to how functions are declared/structured etc or use syntax you are familiar with.
